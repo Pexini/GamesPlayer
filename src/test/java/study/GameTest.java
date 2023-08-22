@@ -1,7 +1,10 @@
 package study;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -137,4 +140,25 @@ class GameTest {
         int expected = 1500;
         Assertions.assertEquals(expected, actual);
     }
+
+    private Game game;
+
+    @BeforeEach
+    void setUp() {
+        game = new Game();
+    }
+
+    @Test
+    public void AddAndCheckPlayersInfo() {
+
+        game.register(new Player(15, "Sveta", 110));
+        game.register(new Player(11, "Vasia", 101));
+
+        HashMap<String, Player> playerHashMap = game.playerHashMap;
+
+        Player svetaPlayer = playerHashMap.get("Sveta");
+        assertEquals("Sveta", svetaPlayer.getName());
+        assertEquals(110, svetaPlayer.getStringht());
+    }
+
 }
